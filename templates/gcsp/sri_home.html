@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secure Retire Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    {% include 'gcsp/gcsp_header.html'%}
+    <div class="container text-left">
+        <div class="row justify-content-center">
+            <div class="col-6 mt-3">
+                <h3>Section 1: Basic Information</h3>
+                <form id="sriForm">
+                    <div class="border bs-border-light-subtle p-3 rounded">
+                        <div class="mb-3">
+                            <label for="age" class="form-label">I am at the age: </label><strong><output for="age"
+                                    id="ageRangeValue" aria-hidden="true"></output></strong>
+                            <input type="range" class="form-range" min="55" max="80" value="60" id="age" name="age">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="gender" class="form-label  fw-bold">Gender</label>
+                            <select class="form-select" id="gender" name="gender" required>
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="retirementFund" class="form-label  fw-bold">Total Retirement Fund</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control" id="retirementFund" name="retirementFund"
+                                    placeholder="Enter whole number amount" required inputmode="numeric"
+                                    pattern="[0-9,]*">
+                            </div>
+                            <div id="fundHelp" class="form-text text-danger d-none">
+                                Maximum allowed is $5,000,000.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-3" style="height:5px;border:none;color:#333;background-color:#333;">
+
+                    <h3>Section 2: Secure Retirement Index</h3>
+                    <div class="border bs-border-light-subtle p-3 rounded">
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="minsri" class="form-label  fw-bold">Minimum SRI</label>
+                                <input type="number"
+                                        class="form-control"
+                                        name="minsri"
+                                        id="minsri"
+                                        value="0"
+                                        min="0"
+                                        max="100"
+                                        aria-describedby="minsriHelp">
+                                <div id="minsriError" class="form-text text-danger" style="display: none;">
+                                    Minimum SRI must be between 0 and 100.
+                                </div>
+                                <div id="minrsiHelp" class="form-text">
+                                    Enter a number: 0-100
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="maxsri" class="form-label  fw-bold">Maximum SRI</label>
+                                <input type="number"
+                                        class="form-control"
+                                        name="maxsri"
+                                        id="maxsri"
+                                        value="30"
+                                        min="0"
+                                        max="100"
+                                        aria-describedby="maxsriHelp">
+                                <div id="maxsriError" class="form-text text-danger" style="display: none;">
+                                            Maximum SRI must be greater than Minimum SRI, and ≤ 100.
+                                          </div>
+                                <div id="minrsiHelp" class="form-text">
+                                    Enter a number: "minimum RSI" - 100
+                                </div>
+                            </div>
+                        </div>
+                    
+                        {% for q in questions %}
+                            <div class="mb-3">
+                            <label class="form-label"><strong>{{ q.label }}</strong></label><br>
+                            {% for option in q.options %}
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" 
+                                        name="{{ q.key }}" id="{{ q.key }}_{{ loop.index }}" 
+                                        value="{{ loop.index }}" 
+                                        {% if loop.index == 3 %}checked{% endif %}> 
+                                <label class="form-check-label" for="{{ q.key }}_{{ loop.index }}">
+                                    {{ option }}
+                                </label>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            <hr class="my-3">
+                        {% endfor %}
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg"  id="submitBtn">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-6 mt-3 justify-content-center">
+                <h3>Result display</h3>
+                <div id="result"></div>
+                
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+    <script src="{{ url_for('static', filename='gcspjs/gcsp.js') }}"></script>
+</body>
+
+</html>

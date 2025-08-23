@@ -1,0 +1,18 @@
+id,Asset_Class,10Year,20Year,stddev,Risk
+1,US Equity - Large Cap,6.90%,0.0737,0.1664,High
+2,US Equity - Small/Mid Cap ,7.38%,0.0775,0.2051,High
+3,Non-US Equity - Developed ,7.49%,0.0778,0.1826,High
+4,Non-US Equity - Emerging ,8.21%,0.0859,0.2387,High
+5,US Corporate Bonds - Core,4.71%,0.0476,0.0585,Low
+6,US Corporate Bonds - Long Duration,4.80%,0.05,0.1091,Moderate
+7,US Corporate Bonds - High Yield,6.43%,0.0654,0.1001,Moderate
+8,Non-US Debt - Developed,3.42%,0.0352,0.0731,Moderate
+9,Non-US Debt - Emerging,6.29%,0.064,0.1093,Moderate
+10,US Treasuries (Cash Equivalents) ,3.38%,0.0323,0.0109,Low
+11,TIPS (Inflation-Protected) ,4.07%,0.0408,0.0617,Low
+12,Real Estate,5.95%,0.0625,0.1672,High
+13,Hedge Funds,5.96%,0.0618,0.0806,High
+14,Commodities,4.96%,0.049,0.1802,High
+15,Infrastructure,7.00%,0.0706,0.171,High
+16,Private Equity,9.46%,0.1013,0.2257,High
+17,Private Debt,8.16%,0.0824,0.1173,High

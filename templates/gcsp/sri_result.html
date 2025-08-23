@@ -1,0 +1,74 @@
+  <div class="card shadow-lg border-primary mb-3">
+    <div class="card-body text-center">
+      <h6 class="card-title text-primary fw-bold">SRI SCORE</h6>
+      <p class="card-text display-5 fw-bold">{{ "{:,.0f}".format(results.score) }}</p>
+    </div>
+  </div>
+<h5 class="mt-4">Asset Allocation and Spending Projections</h5>
+<table class="table table-bordered table-striped table-sm text-center align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>Field</th>
+      <th>Benchmark</th>
+      <th>Integrated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- SPIA purchase -->
+    <tr>
+      <td>SPIA Purchase</td>
+      <td>-</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.mix_spiaAmt) }}</td>
+    </tr>
+
+    <!-- Asset amount -->
+    <tr>
+      <td>Investable Asset Amount</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.bm_asset) }}</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.mix_asset) }}</td>
+    </tr>
+
+    <!-- Asset allocation -->
+    <tr class="table-secondary">
+      <td colspan="3" class="fw-bold py-1">Asset Allocation (Bond / Equity)</td>
+    </tr>
+    <tr>
+      <td>Bond</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.bm_low_high_amt[0]) }} ({{ "{:.0f}%".format(results.GCSP_result.bm_low_high[0] * 100) }})</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.mix_low_high_amt[0]) }} ({{ "{:.0f}%".format(results.GCSP_result.mix_low_high[0] * 100) }})</td>
+    </tr>
+    <tr>
+      <td>Equity</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.bm_low_high_amt[1]) }} ({{ "{:.0f}%".format(results.GCSP_result.bm_low_high[1] * 100) }})</td>
+      <td>{{ "{:,.0f}".format(results.GCSP_result.mix_low_high_amt[1]) }} ({{ "{:.0f}%".format(results.GCSP_result.mix_low_high[1] * 100) }})</td>
+    </tr>
+
+    <!-- SPIA income -->
+    <tr>
+      <td>SPIA Income</td>
+      <td>-</td>
+      <td>{{ "{:,}".format(results.GCSP_result.mix_spia_pay) }}</td>
+    </tr>
+
+    <!-- Spending levels -->
+    <tr class="table-secondary">
+      <td colspan="3" class="fw-bold">Spending Level (by Certainty)</td>
+    </tr>
+    <tr class="table-light">
+      <td></td>
+      <td>Benchmark</td>
+      <td>Integrated</td>
+    </tr>
+    {% set certainty_levels = [99, 95, 90, 80, 70, 60, 50, 40, 30, 20, 10, 5] %}
+    {% for cl in certainty_levels %}
+    <tr class="{% if cl == 95 %}table-warning{% endif %}">
+    <td>{{ cl }}%</td>
+    <td>{{ "{:,}".format(results.GCSP_result.bm_spending_arr[loop.index0]) }}</td>
+    <td>{{ "{:,}".format(results.GCSP_result.mix_spending_arr[loop.index0]) }}</td>
+  </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<h5 class="mt-4">Spending Level Comparison</h5>
+<img src="data:image/png;base64,{{ chart_img }}" alt="Spending Chart" class="img-fluid my-3">

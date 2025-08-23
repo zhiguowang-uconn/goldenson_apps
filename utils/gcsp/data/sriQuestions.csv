@@ -1,0 +1,8 @@
+Factors,label,keys,Option1,Option2,Option3,Option4,Option5,Weights
+Other income sources,Other income sources,other_income,No other source of income,Limited,Average,Above average ,Several other sources of income,0.25
+Health/longevity,Health/longevity,health,Excellent,Above average,Average,Below average,Poor health,0.20
+Risk tolerance,Risk tolerance,risk_tolerance,Highly risk averse,Below average,Average ,Above average ,High level of risk tolerance ,0.15
+Number of dependents ,Number of dependents ,number_of_dependents,4 or more,3,2,1,0,0.10
+Discipline ,Discipline ,discipline,Very little,Low,Average,Above average ,High Level,0.10
+Financial literacy,Financial literacy,literacy,Low Level,Below average,Average ,Above average ,High Level,0.10
+Social connectedness,Social connectedness,social,Minimal social connectedness and lack of a safety net,Low social connectedness,Average,Above average ,High Level,0.10
