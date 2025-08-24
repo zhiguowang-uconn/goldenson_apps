@@ -47,9 +47,3 @@ def sblehome():
     return render_template("sble_home.html")
 
 
-
-# -------------------------
-# Run
-# -------------------------
-if __name__ == "__main__":
-    app.run(debug=True)
