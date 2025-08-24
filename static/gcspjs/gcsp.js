@@ -99,6 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         resultDiv.innerHTML = data.html; // inject the rendered table
+
+        // scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: "smooth" });
       })
       .catch(err => console.error(err));
     });
