@@ -2,7 +2,8 @@ import pandas as pd
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')  # Non-GUI backend
-
+# Force matplotlib to use /tmp as config/cache dir
+os.environ["MPLCONFIGDIR"] = "/tmp"
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import io
